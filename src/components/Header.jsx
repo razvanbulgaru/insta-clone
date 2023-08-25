@@ -36,7 +36,7 @@ const Header = () => {
 					<input
 						type="text"
 						placeholder="Search"
-						className="bg-gray-50 pl-10 border border-gray-500 text-sm h-9 focus:ring-black focus:border-black rounded-md"
+						className="bg-gray-50 pl-10 border-gray-500 text-sm focus:ring-black focus:border-black rounded-md"
 					/>
 				</div>
 				{/* Right */}
