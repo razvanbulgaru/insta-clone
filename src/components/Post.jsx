@@ -1,6 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react';
+import { AiOutlineHeart } from 'react-icons/ai';
 import { BiDotsHorizontalRounded } from 'react-icons/bi';
+import { PiChatCircleDotsLight } from 'react-icons/pi';
+import { BsBookmark } from 'react-icons/bs';
 
 const Post = ({ post }) => {
 	const { username, id, userImg, img, caption } = post;
@@ -18,6 +21,14 @@ const Post = ({ post }) => {
 			</div>
 			{/* Post Image */}
 			<img src={img} alt={caption} className="object-cover w-full" />
+			{/* Post buttons */}
+			<div className="flex justify-between px-4 pt-4">
+				<div className="flex space-x-4">
+					<AiOutlineHeart className="btn" />
+					<PiChatCircleDotsLight className="btn" />
+				</div>
+				<BsBookmark className="btn" />
+			</div>
 		</div>
 	);
 };
