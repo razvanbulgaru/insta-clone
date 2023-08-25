@@ -4,6 +4,7 @@ import { AiOutlineHeart } from 'react-icons/ai';
 import { BiDotsHorizontalRounded } from 'react-icons/bi';
 import { PiChatCircleDotsLight } from 'react-icons/pi';
 import { BsBookmark } from 'react-icons/bs';
+import { HiOutlineEmojiHappy } from 'react-icons/hi';
 
 const Post = ({ post }) => {
 	const { username, id, userImg, img, caption } = post;
@@ -29,6 +30,23 @@ const Post = ({ post }) => {
 				</div>
 				<BsBookmark className="btn" />
 			</div>
+			{/* Post comments */}
+			<p className="p-5 truncate">
+				<span className="font-bold mr-2">{username}</span>
+				{caption}
+			</p>
+			{/* Post input box */}
+			<form className="flex items-center p-4">
+				<HiOutlineEmojiHappy className="text-3xl" />
+				<input
+					type="text"
+					placeholder="Enter your comment..."
+					className="border-none flex-1 focus:ring-0"
+				/>
+				<button type="submit" className="text-blue-400 font-bold">
+					Post
+				</button>
+			</form>
 		</div>
 	);
 };
