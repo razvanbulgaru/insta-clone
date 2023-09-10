@@ -2,6 +2,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+import { useSession, signIn, signOut } from 'next-auth/react';
 import {
 	AiOutlineSearch,
 	AiOutlinePlusCircle,
@@ -9,6 +10,7 @@ import {
 } from 'react-icons/ai';
 
 const Header = () => {
+	const { data: session } = useSession();
 	return (
 		<div className="shadow-sm sticky border-b top-0 bg-white z-30">
 			<div className="flex items-center justify-between max-w-6xl mx-4 xl:mx-auto">
@@ -46,11 +48,18 @@ const Header = () => {
 				<div className="flex space-x-4 items-center">
 					<AiFillHome className="hidden md:inline-flex text-2xl cursor-pointer hover:scale-125 transition-transform duration-200 ease-out" />
 					<AiOutlinePlusCircle className="text-2xl cursor-pointer hover:scale-125 transition-transform duration-200 ease-out" />
-					<img
-						src="https://media.licdn.com/dms/image/C4E03AQHkdBvprGDBBw/profile-displayphoto-shrink_800_800/0/1622011196095?e=2147483647&v=beta&t=Ey11EN9bSLaWodByp9757mbYfvpoSX-Pc5MQpi998yo"
-						alt="User image"
-						className="h-10 rounded-full cursor-pointer"
-					/>
+					{session ? (
+						<>
+							<img
+								onClick={signOut}
+								src={session.user.image}
+								alt="User image"
+								className="h-10 rounded-full cursor-pointer"
+							/>
+						</>
+					) : (
+						<button onClick={signIn}>Sign in</button>
+					)}
 				</div>
 			</div>
 		</div>
