@@ -9,5 +9,10 @@ export const authOptions = {
 		}),
 		// ...add more providers here
 	],
+	pages: {
+		signin: '/auth/signin',
+	},
 };
-export default NextAuth(authOptions);
+const handler = NextAuth(authOptions);
+
+export { handler as GET, handler as POST };
