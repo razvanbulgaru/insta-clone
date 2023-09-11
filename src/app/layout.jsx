@@ -1,8 +1,9 @@
-'use client';
 import Header from '@/components/Header';
 import './globals.css';
 import { Inter } from 'next/font/google';
-import { SessionProvider } from 'next-auth/react';
+import UploadModal from '@/components/UploadModal';
+import { NextAuthProvider } from './providers';
+import { RecoilRootWrapper } from './recoilrootwrapper';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -14,15 +15,18 @@ export const metadata = {
 export default function RootLayout({ children, session }) {
 	return (
 		<html lang="en">
-			<SessionProvider session={session}>
-				<body className={inter.className}>
-					{/* Header */}
-					<Header />
-					{/* Feed */}
-					{children}
-					{/* Modal */}
-				</body>
-			</SessionProvider>
+			<body className={inter.className}>
+				<NextAuthProvider session={session}>
+					<RecoilRootWrapper>
+						{/* Header */}
+						<Header />
+						{/* Feed */}
+						{children}
+						{/* Modal */}
+						<UploadModal />
+					</RecoilRootWrapper>
+				</NextAuthProvider>
+			</body>
 		</html>
 	);
 }

@@ -1,8 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
+'use client';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { useSession, signIn, signOut } from 'next-auth/react';
+import { useRecoilState } from 'recoil';
+import { modalState } from '@/app/atom/modalAtom';
 import {
 	AiOutlineSearch,
 	AiOutlinePlusCircle,
@@ -11,6 +14,7 @@ import {
 
 const Header = () => {
 	const { data: session } = useSession();
+	const [open, setOpen] = useRecoilState(modalState);
 	return (
 		<div className="shadow-sm sticky border-b top-0 bg-white z-30">
 			<div className="flex items-center justify-between max-w-6xl mx-4 xl:mx-auto">
@@ -47,7 +51,10 @@ const Header = () => {
 				{/* Right */}
 				<div className="flex space-x-4 items-center">
 					<AiFillHome className="hidden md:inline-flex text-2xl cursor-pointer hover:scale-125 transition-transform duration-200 ease-out" />
-					<AiOutlinePlusCircle className="text-2xl cursor-pointer hover:scale-125 transition-transform duration-200 ease-out" />
+					<AiOutlinePlusCircle
+						className="text-2xl cursor-pointer hover:scale-125 transition-transform duration-200 ease-out"
+						onClick={() => setOpen(true)}
+					/>
 					{session ? (
 						<>
 							<img
